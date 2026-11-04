@@ -4,7 +4,20 @@
 
 A browsable, bilingual heritage archive of 25 Indian monuments — each with a photograph, verified sources, folklore, nearby attractions, a five-stage narrative, and an official citation. Built for **Blithchron '27 · IIT Gandhinagar**, Track 2: *Digital Revitalisation of Unstructured Cultural & Architectural Heritage Archives*.
 
-🌐 **Live:** `http://localhost:5173/` · **Repo:** [agriddhi/Bharat-darshan](https://github.com/agriddhi/Bharat-darshan)
+🌐 **Live Website:** https://bharat-darshan-virid.vercel.app/#/
+📦 **Repo:** [agriddhi/bharat-darshan-v2-](https://github.com/agriddhi/bharat-darshan-v2-)
+
+---
+
+## Problem Statement
+
+India's heritage exists in static reports, scattered archives, and disconnected tourism pages. There is no single place where a student, tourist, or researcher can explore monuments spatially, read verified folklore, walk a chronological timeline, and track their own journey. The gap is **location-based, interactive mapping with folklore and architectural discovery** — exactly the innovation pathway we chose.
+
+---
+
+## Project Title
+
+**Bharat Darshan — Heritage Atlas India**
 
 ---
 
@@ -152,12 +165,13 @@ Innovation pathway: **Geospatial / Immersive Web** — location-based interactiv
 
 ## Team
 
-| Role | Name & Contact |
-|---|---|
-| TODO | TODO: name and contact |
-| TODO | TODO: name and contact |
-| TODO | TODO: name and contact |
+**Team ID:** 5D6656351076
+**Team Name:** kairo aeon tech
+**Participants:** Riddhi Agrawal, Aarya Sharma, Ishan Parmar
 
 ---
 
 *Built with React 18, TypeScript, Vite, Leaflet, Zustand. No react-router — hand-rolled hash router (~60 lines).*
+
+🌐 **Live:** https://bharat-darshan-virid.vercel.app/#/
+📦 **Repo:** https://github.com/agriddhi/bharat-darshan-v2-
