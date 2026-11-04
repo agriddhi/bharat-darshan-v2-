@@ -15,102 +15,108 @@
     --rust: #9D473A;
     --steel-blue: #416A81;
     --ink-navy: #16243D;
-    --bg: #0a1020;
-    --bg-2: #0e1624;
-    --paper: #e8e4d8;
-    --paper-dim: rgba(244,235,217,0.72);
-    --glass: rgba(244,235,217,0.05);
-    --glass-line: rgba(244,235,217,0.12);
+    --bg: #f5f1e8;
+    --bg-warm: #ede8dc;
+    --paper: #1a1a2e;
+    --paper-dim: rgba(26,26,46,0.7);
+    --glass: rgba(255,255,255,0.6);
+    --glass-line: rgba(26,26,46,0.12);
+    --border: rgba(26,26,46,0.08);
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--paper); overflow: hidden; }
   .deck { width: 100vw; height: 100vh; position: relative; }
 
   .slide {
-    position: absolute; inset: 0; padding: 50px 70px;
+    position: absolute; inset: 0; padding: 48px 64px;
     display: none; flex-direction: column; justify-content: center;
     background: var(--bg); overflow: hidden;
   }
   .slide.active { display: flex; }
 
-  /* Ambient background */
+  /* Warm paper texture */
   .slide::before {
     content: ''; position: absolute; inset: 0;
-    background: radial-gradient(ellipse 80% 60% at 85% 15%, rgba(222,160,68,0.06), transparent 60%),
-                radial-gradient(ellipse 60% 40% at 10% 85%, rgba(65,106,129,0.04), transparent 50%);
+    background: radial-gradient(ellipse 70% 50% at 85% 15%, rgba(222,160,68,0.06), transparent 60%),
+                radial-gradient(ellipse 50% 40% at 10% 85%, rgba(191,130,80,0.04), transparent 50%);
     pointer-events: none; z-index: 0;
   }
   .slide::after {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(222,160,68,0.3), transparent);
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, transparent, var(--ochre), var(--terracotta), transparent);
     pointer-events: none;
   }
   .slide > * { position: relative; z-index: 1; }
 
-  /* Typography */
-  h1 { font-family: 'Playfair Display', serif; font-size: 3.2rem; font-weight: 600; line-height: 1.05; margin-bottom: 12px; color: var(--paper); letter-spacing: -0.01em; }
+  h1 { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 700; line-height: 1.05; margin-bottom: 10px; color: var(--ink-navy); letter-spacing: -0.01em; }
   h1 .accent { color: var(--ochre); font-style: italic; font-weight: 400; }
-  h1 .accent-2 { color: var(--terracotta); font-style: italic; font-weight: 400; }
-  h2 { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 600; margin-bottom: 10px; color: var(--paper); line-height: 1.1; }
+  h1 .accent-2 { color: var(--rust); font-style: italic; font-weight: 400; }
+  h2 { font-family: 'Playfair Display', serif; font-size: 1.9rem; font-weight: 600; margin-bottom: 8px; color: var(--ink-navy); line-height: 1.1; }
   h2 .accent { color: var(--ochre); font-style: italic; }
-  h3 { font-family: 'Inter', sans-serif; font-size: 1.05rem; font-weight: 600; margin-bottom: 6px; color: var(--paper); }
-  p { font-size: 1.05rem; line-height: 1.65; color: var(--paper-dim); max-width: 860px; }
-  .subtitle { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-style: italic; color: var(--paper-dim); margin-bottom: 20px; }
+  h3 { font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 600; margin-bottom: 4px; color: var(--ink-navy); }
+  p { font-size: 1rem; line-height: 1.6; color: var(--paper-dim); max-width: 860px; }
+  .subtitle { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-style: italic; color: var(--paper-dim); margin-bottom: 16px; }
 
-  /* Tag */
-  .tag { display: inline-block; padding: 5px 14px; border-radius: 999px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; background: rgba(222,160,68,0.12); color: var(--ochre); border: 1px solid rgba(222,160,68,0.4); margin-bottom: 16px; }
-  .tag-steel { background: rgba(65,106,129,0.12); color: #7ba8c4; border-color: rgba(65,106,129,0.4); }
-  .tag-rust { background: rgba(157,71,58,0.12); color: #c48a7e; border-color: rgba(157,71,58,0.4); }
+  .tag { display: inline-block; padding: 5px 14px; border-radius: 999px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; background: rgba(222,160,68,0.1); color: var(--rust); border: 1px solid rgba(222,160,68,0.35); margin-bottom: 14px; }
+  .tag-steel { background: rgba(65,106,129,0.1); color: var(--steel-blue); border-color: rgba(65,106,129,0.35); }
+  .tag-rust { background: rgba(157,71,58,0.1); color: var(--rust); border-color: rgba(157,71,58,0.35); }
+  .tag-green { background: rgba(74,124,89,0.1); color: #4a7c59; border-color: rgba(74,124,89,0.35); }
 
-  /* Layout */
-  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 16px; }
-  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 16px; }
-  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 16px; }
-  .card { background: var(--glass); border: 1px solid var(--glass-line); border-radius: 10px; padding: 22px; transition: border-color 0.3s; position: relative; overflow: hidden; }
-  .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--ochre), transparent); opacity: 0.4; }
-  .card:hover { border-color: rgba(222,160,68,0.3); }
-  .card h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; margin-bottom: 8px; }
-  .card p { font-size: 0.9rem; line-height: 1.6; color: var(--paper-dim); }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 14px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-top: 14px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 14px; }
+  .card { background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 18px; position: relative; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
+  .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--ochre), var(--terracotta)); opacity: 0.6; }
+  .card h3 { font-family: 'Playfair Display', serif; font-size: 1.05rem; margin-bottom: 6px; color: var(--ink-navy); }
+  .card p { font-size: 0.88rem; line-height: 1.55; color: var(--paper-dim); }
 
-  /* Metrics */
-  .metric { font-family: 'Playfair Display', serif; font-size: 2.6rem; font-weight: 700; color: var(--ochre); line-height: 1; margin-bottom: 4px; }
-  .metric-label { font-size: 0.78rem; color: var(--paper-dim); opacity: 0.7; line-height: 1.4; }
-  .metric-card { background: var(--glass); border: 1px solid var(--glass-line); border-radius: 10px; padding: 20px; text-align: center; position: relative; overflow: hidden; }
-  .metric-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--ochre), transparent); opacity: 0.4; }
+  .metric { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; color: var(--ochre); line-height: 1; margin-bottom: 2px; }
+  .metric-label { font-size: 0.72rem; color: var(--paper-dim); opacity: 0.7; line-height: 1.3; }
+  .metric-card { background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
+  .metric-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--ochre), var(--terracotta)); opacity: 0.6; }
 
-  /* Bullets */
-  .bullet { list-style: none; padding: 0; margin-top: 12px; }
-  .bullet li { position: relative; padding-left: 24px; margin-bottom: 10px; font-size: 1rem; line-height: 1.55; color: var(--paper-dim); }
+  .bullet { list-style: none; padding: 0; margin-top: 10px; }
+  .bullet li { position: relative; padding-left: 20px; margin-bottom: 8px; font-size: 0.95rem; line-height: 1.5; color: var(--paper-dim); }
   .bullet li::before { content: '—'; position: absolute; left: 0; color: var(--ochre); font-weight: 700; }
-  .bullet li strong { color: var(--paper); font-weight: 600; }
+  .bullet li strong { color: var(--ink-navy); font-weight: 600; }
 
-  /* Bar chart */
-  .bar-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
-  .bar-label { font-size: 0.8rem; min-width: 150px; color: var(--paper-dim); }
-  .bar-track { flex: 1; height: 8px; background: rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; }
+  .bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .bar-label { font-size: 0.78rem; min-width: 140px; color: var(--paper-dim); }
+  .bar-track { flex: 1; height: 8px; background: rgba(0,0,0,0.06); border-radius: 4px; overflow: hidden; }
   .bar-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--ochre), var(--terracotta)); }
-  .bar-value { font-size: 0.8rem; min-width: 40px; text-align: right; color: var(--ochre); font-weight: 600; }
+  .bar-value { font-size: 0.78rem; min-width: 36px; text-align: right; color: var(--rust); font-weight: 600; }
 
-  /* Architecture diagram */
-  .arch { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
-  .arch-row { display: flex; gap: 8px; justify-content: center; }
-  .arch-box { background: var(--glass); border: 1px solid var(--glass-line); border-radius: 8px; padding: 12px 16px; font-size: 0.8rem; text-align: center; min-width: 120px; transition: border-color 0.3s; }
-  .arch-box:hover { border-color: rgba(222,160,68,0.4); }
-  .arch-box .name { font-weight: 600; color: var(--paper); margin-bottom: 2px; }
-  .arch-box .desc { font-size: 0.7rem; color: var(--paper-dim); opacity: 0.7; }
-  .arch-arrow { text-align: center; color: var(--ochre); opacity: 0.5; font-size: 0.9rem; margin: 4px 0; }
+  .arch { display: flex; flex-direction: column; gap: 6px; margin-top: 12px; }
+  .arch-row { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; }
+  .arch-box { background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; font-size: 0.75rem; text-align: center; min-width: 100px; box-shadow: 0 1px 6px rgba(0,0,0,0.03); }
+  .arch-box .name { font-weight: 600; color: var(--ink-navy); margin-bottom: 1px; }
+  .arch-box .desc { font-size: 0.65rem; color: var(--paper-dim); opacity: 0.7; }
+  .arch-arrow { text-align: center; color: var(--ochre); opacity: 0.5; font-size: 0.85rem; margin: 2px 0; }
 
-  /* Footer */
-  .foot { position: absolute; bottom: 20px; left: 70px; font-size: 0.65rem; opacity: 0.35; letter-spacing: 0.05em; }
-  .slide-num { position: absolute; bottom: 20px; right: 28px; font-size: 0.65rem; opacity: 0.35; letter-spacing: 0.08em; }
-  .nav-hint { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); font-size: 0.65rem; opacity: 0.3; letter-spacing: 0.05em; }
+  .foot { position: absolute; bottom: 18px; left: 64px; font-size: 0.62rem; opacity: 0.35; letter-spacing: 0.05em; color: var(--paper-dim); }
+  .slide-num { position: absolute; bottom: 18px; right: 24px; font-size: 0.62rem; opacity: 0.35; letter-spacing: 0.08em; color: var(--paper-dim); }
+  .nav-hint { position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%); font-size: 0.62rem; opacity: 0.3; letter-spacing: 0.05em; color: var(--paper-dim); }
 
-  /* Title slide special */
-  .title-slide h1 { font-size: 4rem; }
-  .title-slide .subtitle { font-size: 1.5rem; margin-bottom: 24px; }
-  .title-slide .tag { margin-bottom: 20px; }
+  .title-slide h1 { font-size: 3.6rem; }
+  .title-slide .subtitle { font-size: 1.4rem; margin-bottom: 16px; }
+  .title-slide .tag { margin-bottom: 16px; }
 
-  /* Print */
+  /* Team card */
+  .team-card { background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
+  .team-card .name { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 600; color: var(--ink-navy); margin-bottom: 4px; }
+  .team-card .role { font-size: 0.8rem; color: var(--paper-dim); opacity: 0.7; }
+  .team-card .id { font-size: 0.72rem; color: var(--ochre); font-weight: 600; margin-top: 6px; }
+
+  /* Problem statement box */
+  .problem-box { background: #fff; border: 2px solid var(--ochre); border-radius: 12px; padding: 24px; margin-top: 16px; box-shadow: 0 4px 20px rgba(222,160,68,0.1); }
+  .problem-box p { font-size: 1.05rem; line-height: 1.7; color: var(--ink-navy); }
+  .problem-box .label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--rust); margin-bottom: 8px; }
+
+  /* Title card */
+  .title-card { background: linear-gradient(135deg, var(--ochre), var(--terracotta)); border-radius: 12px; padding: 24px; color: #fff; text-align: center; }
+  .title-card h3 { color: #fff; font-size: 1.3rem; margin-bottom: 4px; }
+  .title-card p { color: rgba(255,255,255,0.85); font-size: 0.9rem; }
+
   @media print { .slide { page-break-after: always; position: relative; display: flex !important; } .nav-hint { display: none; } }
 </style>
 </head>
@@ -122,30 +128,38 @@
     <div class="tag">Track 2 · HC26-CULT01 · Blithchron '27 · IIT Gandhinagar</div>
     <h1>Bharat Darshan<br><span class="accent">Heritage Atlas India</span></h1>
     <p class="subtitle">Twenty-five monuments, one atlas of India.</p>
-    <p>A geospatial, bilingual, source-cited heritage archive — map, timeline, stories, folklore, and quiz — built for Blithchron '27.</p>
-    <div style="margin-top:32px; display:flex; gap:24px; align-items:center;">
-      <div style="padding:12px 20px; border:1px solid var(--glass-line); border-radius:8px; background:var(--glass);">
-        <div style="font-size:0.7rem; opacity:0.5; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:4px;">Team</div>
-        <div style="font-size:0.9rem;">3 members · TODO: name and contact</div>
+    <p>A geospatial, bilingual, source-cited heritage archive — map, timeline, stories, folklore, and quiz.</p>
+    <div style="margin-top:28px; display:flex; gap:16px; flex-wrap:wrap;">
+      <div class="team-card" style="min-width:160px;">
+        <div class="name">Team ID</div>
+        <div class="id">5D6656351076</div>
       </div>
-      <div style="padding:12px 20px; border:1px solid var(--glass-line); border-radius:8px; background:var(--glass);">
-        <div style="font-size:0.7rem; opacity:0.5; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:4px;">Deadline</div>
-        <div style="font-size:0.9rem;">4 Nov 2026, 6:30 PM IST</div>
+      <div class="team-card" style="min-width:160px;">
+        <div class="name">Team Name</div>
+        <div class="id" style="color:var(--ink-navy); font-family:'Playfair Display',serif; font-size:1.1rem;">kairo aeon tech</div>
+      </div>
+      <div class="team-card" style="min-width:200px;">
+        <div class="name">Participants</div>
+        <div class="role">Riddhi Agrawal · Aarya Sharma · Ishan Parmar</div>
       </div>
     </div>
     <div class="foot">Bharat Darshan · Heritage Atlas India · Track 2</div>
     <span class="slide-num">01 / 10</span>
   </div>
 
-  <!-- ===== SLIDE 2: PROBLEM ===== -->
+  <!-- ===== SLIDE 2: PROBLEM STATEMENT ===== -->
   <div class="slide">
-    <div class="tag tag-rust">The Problem</div>
-    <h2>India's heritage exists in <span class="accent">static reports</span> and disconnected pages.</h2>
+    <div class="tag tag-rust">Problem Statement</div>
+    <h2>India's heritage exists in <span class="accent-2">scattered, static reports</span>.</h2>
     <p>No single place lets a student, tourist, or researcher explore monuments spatially, read verified folklore, walk a timeline, and track their own journey.</p>
-    <div class="grid-3" style="margin-top:24px;">
+    <div class="problem-box">
+      <div class="label">The Challenge</div>
+      <p>How do we transform unstructured cultural and architectural heritage archives into an interactive, verifiable, spatially explorable digital experience — without fabricating a single fact?</p>
+    </div>
+    <div class="grid-3" style="margin-top:16px;">
       <div class="card">
         <h3>Scattered</h3>
-        <p>Monuments documented in PDFs, ASI reports, and tourism pages — no unified interface.</p>
+        <p>Monuments in PDFs, ASI reports, tourism pages. No unified interface.</p>
       </div>
       <div class="card">
         <h3>Static</h3>
@@ -156,7 +170,6 @@
         <p>Folklore often fabricated. No source citation. No provenance for claims.</p>
       </div>
     </div>
-    <p style="margin-top:20px; font-size:0.95rem; opacity:0.6;">The gap: <strong style="color:var(--ochre);">location-based, interactive mapping with folklore and architectural discovery</strong> — exactly our chosen pathway.</p>
     <div class="foot">Bharat Darshan · Heritage Atlas India</div>
     <span class="slide-num">02 / 10</span>
   </div>
@@ -165,7 +178,7 @@
   <div class="slide">
     <div class="tag">The Solution</div>
     <h2>One atlas. <span class="accent">Five modes of exploration.</span></h2>
-    <div class="grid-2" style="margin-top:16px;">
+    <div class="grid-2" style="margin-top:14px;">
       <div class="card">
         <h3>🗺️ Heritage Map</h3>
         <p>25 monuments as teardrop pins on Leaflet. Region + type filters. Journey route as dashed ochre polyline. Click any pin → photo, facts, actions.</p>
@@ -176,7 +189,7 @@
       </div>
       <div class="card">
         <h3>⏱️ Timeline</h3>
-        <p>Four eras (Ancient · Medieval · Mughal · Colonial). All 25 sites regardless of filter. Honest date rules — TODO stays TODO.</p>
+        <p>Four eras (Ancient · Medieval · Mughal · Colonial). All 25 sites regardless of filter. Honest date rules.</p>
       </div>
       <div class="card">
         <h3>📖 Stories</h3>
@@ -201,7 +214,7 @@
     <h2>One data file. <span class="accent">Everything reads from it.</span></h2>
     <div class="arch">
       <div class="arch-row">
-        <div class="arch-box" style="min-width:320px;">
+        <div class="arch-box" style="min-width:300px; background:linear-gradient(135deg,rgba(222,160,68,0.08),rgba(191,130,80,0.04));">
           <div class="name">src/data/sites.json</div>
           <div class="desc">THE ONE DATA FILE · 25 monuments · 102,987 chars prose</div>
         </div>
@@ -237,7 +250,7 @@
         <div class="arch-box"><div class="name">QuizPage</div></div>
       </div>
     </div>
-    <p style="margin-top:16px; font-size:0.85rem; opacity:0.5;">Pages read from data; they never write to it. A page can never show a fact not in the file.</p>
+    <p style="margin-top:12px; font-size:0.85rem; opacity:0.5;">Pages read from data; they never write to it. A page can never show a fact not in the file.</p>
     <div class="foot">Bharat Darshan · Heritage Atlas India</div>
     <span class="slide-num">04 / 10</span>
   </div>
@@ -247,7 +260,7 @@
     <div class="tag">Innovation Pathway</div>
     <h2>Geospatial / <span class="accent">Immersive Web</span></h2>
     <p>Location-based, interactive mapping with travel routes, folklore, and architectural discovery.</p>
-    <div class="grid-2" style="margin-top:20px;">
+    <div class="grid-2" style="margin-top:16px;">
       <div class="card">
         <h3>Travel Routes</h3>
         <p>Journey route as dashed ochre polyline with numbered pins. Mark visited. Add to journey. Distance between stops.</p>
@@ -265,7 +278,7 @@
         <p>Click pins → preview card (photo, quick fact, actions). Filters, scroll-zoom, keyboard nav.</p>
       </div>
     </div>
-    <p style="margin-top:16px; font-size:0.85rem; opacity:0.5;">CV/3D and NLP/OCR were considered but not feasible in remaining time — documented in README.</p>
+    <p style="margin-top:12px; font-size:0.85rem; opacity:0.5;">CV/3D and NLP/OCR were considered but not feasible in remaining time — documented in README.</p>
     <div class="foot">Bharat Darshan · Heritage Atlas India</div>
     <span class="slide-num">05 / 10</span>
   </div>
@@ -275,7 +288,7 @@
     <div class="tag tag-rust">Data Honesty</div>
     <h2>No fabrication. <span class="accent-2">Nothing invented.</span></h2>
     <p>Our core differentiator: where a field was empty in the source, it is empty here.</p>
-    <div class="grid-4" style="margin-top:20px;">
+    <div class="grid-4" style="margin-top:16px;">
       <div class="metric-card">
         <div class="metric">20</div>
         <div class="metric-label">TODOs stay TODO</div>
@@ -293,7 +306,7 @@
         <div class="metric-label">sources · 127 facts · 102,987 chars prose</div>
       </div>
     </div>
-    <div class="grid-2" style="margin-top:20px;">
+    <div class="grid-2" style="margin-top:16px;">
       <div class="card">
         <h3>What we added</h3>
         <p>Verified folklore from Wikipedia. Nearby attractions with descriptions. Source citation per entry.</p>
@@ -311,22 +324,22 @@
   <div class="slide">
     <div class="tag">UI/UX Design</div>
     <h2>Designed for <span class="accent">reading</span>, not dashboards.</h2>
-    <div class="grid-2" style="margin-top:16px;">
+    <div class="grid-2" style="margin-top:14px;">
       <div class="card">
         <h3>Palette</h3>
         <p>softStone · ochre (sole accent) · terracotta · rust · steelBlue · ink navy. ≤2 accents per panel.</p>
         <div style="display:flex; gap:6px; margin-top:10px;">
-          <span style="width:24px; height:24px; background:#CDC8B8; border-radius:4px;"></span>
+          <span style="width:24px; height:24px; background:#CDC8B8; border-radius:4px; border:1px solid rgba(0,0,0,0.1);"></span>
           <span style="width:24px; height:24px; background:#DEA044; border-radius:4px;"></span>
           <span style="width:24px; height:24px; background:#BF8250; border-radius:4px;"></span>
           <span style="width:24px; height:24px; background:#9D473A; border-radius:4px;"></span>
           <span style="width:24px; height:24px; background:#416A81; border-radius:4px;"></span>
-          <span style="width:24px; height:24px; background:#16243D; border-radius:4px; border:1px solid rgba(255,255,255,0.1);"></span>
+          <span style="width:24px; height:24px; background:#16243D; border-radius:4px;"></span>
         </div>
       </div>
       <div class="card">
         <h3>Bilingual</h3>
-        <p>EN | हिं toggle on every page. Chrome + content translated. <code>pick()</code> falls back to English.</p>
+        <p>EN | हिं toggle on every page. Chrome + content translated. pick() falls back to English.</p>
       </div>
       <div class="card">
         <h3>Responsive</h3>
@@ -345,14 +358,14 @@
   <div class="slide">
     <div class="tag tag-steel">Technical Execution</div>
     <h2>Built right. <span class="accent">Not just built fast.</span></h2>
-    <div class="grid-2" style="margin-top:16px;">
+    <div class="grid-2" style="margin-top:14px;">
       <div class="card">
         <h3>Stack</h3>
         <p>React 18 + TypeScript + Vite. Leaflet 1.9.4. Zustand. No react-router — hand-rolled hash router.</p>
       </div>
       <div class="card">
         <h3>Build</h3>
-        <p><code>tsc -b && vite build</code> — exit 0, 2.4s. 119 modules. Clean tree. 18 commits.</p>
+        <p>tsc -b && vite build — exit 0, 2.4s. 119 modules. Clean tree. 18 commits.</p>
       </div>
       <div class="card">
         <h3>Code Quality</h3>
@@ -363,7 +376,7 @@
         <p>Static JSON data. Hash routing. Works on any static host. Offline-capable (except map tiles).</p>
       </div>
     </div>
-    <div style="margin-top:20px;">
+    <div style="margin-top:16px;">
       <div class="bar-row">
         <span class="bar-label">Technical Execution (40%)</span>
         <div class="bar-track"><div class="bar-fill" style="width:95%;"></div></div>
@@ -394,10 +407,10 @@
     <div class="tag">Feature Showcase</div>
     <h2>The Heritage Map — <span class="accent">25 monuments, placed where they stand.</span></h2>
     <div class="grid-2" style="margin-top:16px;">
-      <div class="card" style="grid-column: 1 / -1; min-height:200px; display:flex; align-items:center; justify-content:center; background: linear-gradient(135deg, rgba(222,160,68,0.06), rgba(65,106,129,0.04));">
+      <div class="card" style="grid-column: 1 / -1; min-height:160px; display:flex; align-items:center; justify-content:center; background: linear-gradient(135deg, rgba(222,160,68,0.08), rgba(191,130,80,0.04));">
         <div style="text-align:center;">
-          <div style="font-size:3rem; margin-bottom:8px;">🗺️</div>
-          <div style="font-size:1.1rem; color:var(--paper-dim);">Leaflet 1.9.4 · OSM tiles · 25 teardrop pins · Region/type filters · Scroll-zoom · Journey route · Rich popups · Preview cards</div>
+          <div style="font-size:2.5rem; margin-bottom:6px;">🗺️</div>
+          <div style="font-size:0.95rem; color:var(--paper-dim);">Leaflet 1.9.4 · OSM tiles · 25 teardrop pins · Region/type filters · Scroll-zoom · Journey route · Rich popups · Preview cards</div>
         </div>
       </div>
       <div class="card">
@@ -416,24 +429,34 @@
   <!-- ===== SLIDE 10: TEAM & CLOSE ===== -->
   <div class="slide">
     <div class="tag tag-rust">Team & Next Steps</div>
-    <h2>Built by a team of 3. <span class="accent-2">Ready to ship.</span></h2>
-    <div class="grid-3" style="margin-top:20px;">
+    <h2>Built by kairo aeon tech. <span class="accent-2">Ready to ship.</span></h2>
+    <div class="grid-3" style="margin-top:18px;">
+      <div class="team-card">
+        <div class="name">Riddhi Agrawal</div>
+        <div class="role">TODO: role</div>
+      </div>
+      <div class="team-card">
+        <div class="name">Aarya Sharma</div>
+        <div class="role">TODO: role</div>
+      </div>
+      <div class="team-card">
+        <div class="name">Ishan Parmar</div>
+        <div class="role">TODO: role</div>
+      </div>
+    </div>
+    <div class="grid-2" style="margin-top:16px;">
       <div class="card">
-        <h3>Role Cards</h3>
-        <p>TODO: name and contact — all three team members</p>
+        <h3>Team ID</h3>
+        <p style="font-size:1.2rem; font-weight:700; color:var(--ochre);">5D6656351076</p>
       </div>
       <div class="card">
         <h3>Deliverables</h3>
         <p>✅ GitHub push · ⬜ 2–3 min walkthrough video · ⬜ ≤10-slide deck PDF</p>
       </div>
-      <div class="card">
-        <h3>Repo</h3>
-        <p>github.com/agriddhi/Bharat-darshan · main · clean tree</p>
-      </div>
     </div>
-    <div style="margin-top:32px; padding:20px; border:1px solid var(--glass-line); border-radius:10px; background:var(--glass); text-align:center;">
-      <div style="font-family:'Playfair Display',serif; font-size:1.4rem; color:var(--ochre); margin-bottom:8px;">Bharat Darshan — Heritage Atlas India</div>
-      <div style="font-size:0.85rem; opacity:0.6;">Built for Blithchron '27, IIT Gandhinagar · Track 2 / HC26-CULT01 · 4 Nov 2026, 6:30 PM IST</div>
+    <div style="margin-top:20px; padding:16px; border:1px solid var(--border); border-radius:10px; background:#fff; text-align:center; box-shadow:0 2px 12px rgba(0,0,0,0.04);">
+      <div style="font-family:'Playfair Display',serif; font-size:1.3rem; color:var(--ochre); margin-bottom:4px;">Bharat Darshan — Heritage Atlas India</div>
+      <div style="font-size:0.8rem; color:var(--paper-dim); opacity:0.7;">Built for Blithchron '27, IIT Gandhinagar · Track 2 / HC26-CULT01 · 4 Nov 2026, 6:30 PM IST</div>
     </div>
     <div class="foot">Bharat Darshan · Heritage Atlas India</div>
     <span class="slide-num">10 / 10</span>
